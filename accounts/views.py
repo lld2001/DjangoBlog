@@ -117,6 +117,8 @@ class LoginView(FormView):
 
     def form_valid(self, form):
         form = AuthenticationForm(data=self.request.POST, request=self.request)
+        print("=============")
+
 
         if form.is_valid():
             delete_sidebar_cache()

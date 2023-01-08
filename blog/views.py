@@ -94,6 +94,7 @@ class IndexView(ArticleListView):
 
     def get_queryset_data(self):
         article_list = Article.objects.filter(type='a', status='p')
+
         return article_list
 
     def get_queryset_cache_key(self):

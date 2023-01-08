@@ -4,6 +4,7 @@ from django.contrib.sites.admin import SiteAdmin
 from django.contrib.sites.models import Site
 
 from accounts.admin import *
+from accounts.models import MyGroup
 from blog.admin import *
 from blog.models import *
 from comments.admin import *
@@ -18,8 +19,8 @@ from servermanager.models import *
 
 
 class DjangoBlogAdminSite(AdminSite):
-    site_header = 'djangoblog administration'
-    site_title = 'djangoblog site admin'
+    site_header = 'djangoblog 后台管理'
+    site_title = 'djangoblog 站点管理'
 
     def __init__(self, name='admin'):
         super().__init__(name)
@@ -62,3 +63,7 @@ admin_site.register(OwnTrackLog, OwnTrackLogsAdmin)
 admin_site.register(Site, SiteAdmin)
 
 admin_site.register(LogEntry, LogEntryAdmin)
+
+from django.contrib.auth.admin import GroupAdmin
+
+admin_site.register(MyGroup, GroupAdmin)

@@ -57,9 +57,11 @@ open_article_commentstatus.short_description = '打开文章评论'
 
 
 class ArticlelAdmin(admin.ModelAdmin):
-    list_per_page = 20
-    search_fields = ('body', 'title')
+    list_per_page = 8
+    save_as=True
+    search_fields = ('body', 'title','author__username')
     form = ArticleForm
+    empty_value_display='-+-空-+-'
     list_display = (
         'id',
         'title',
@@ -68,7 +70,7 @@ class ArticlelAdmin(admin.ModelAdmin):
         'created_time',
         'views',
         'status',
-        'type',
+        # 'type',
         'article_order')
     list_display_links = ('id', 'title')
     list_filter = (ArticleListFilter, 'status', 'type', 'category', 'tags')

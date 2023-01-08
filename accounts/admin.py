@@ -39,9 +39,8 @@ class BlogUserChangeForm(UserChangeForm):
     password = ReadOnlyPasswordHashField(
         label=_("Password"),
         help_text=_(
-            "Raw passwords are not stored, so there is no way to see this "
-            "user's password, but you can change the password using "
-            "<a href=\"{}\">this form</a>."
+            "修改密码点击 "
+            "<a href=\"{}\"> 这里 </a>."
         ),
     )
     email = forms.EmailField(label="Email", widget=forms.EmailInput)

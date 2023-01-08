@@ -24,7 +24,7 @@ class BlogUser(AbstractUser):
 
     def get_full_url(self):
         site = get_current_site().domain
-        url = "https://{site}{path}".format(site=site,
+        url = "http://{site}{path}".format(site=site,
                                             path=self.get_absolute_url())
         return url
 
@@ -33,3 +33,12 @@ class BlogUser(AbstractUser):
         verbose_name = "用户"
         verbose_name_plural = verbose_name
         get_latest_by = 'id'
+
+from django.contrib.auth.models import Group
+
+class MyGroup(Group):
+    class Meta:
+        ordering=['-id']
+        verbose_name="用户组"
+        verbose_name_plural=verbose_name
+        get_latest_by='id'

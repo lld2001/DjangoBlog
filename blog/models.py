@@ -45,9 +45,9 @@ class BaseModel(models.Model):
 
     def get_full_url(self):
         site = get_current_site().domain
-        url = "https://{site}{path}".format(site=site,
+        url = "http://{site}{path}".format(site=site,
                                             path=self.get_absolute_url())
-        return url
+        return self.get_absolute_url()
 
     class Meta:
         abstract = True
@@ -133,6 +133,7 @@ class Article(BaseModel):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
+
 
     def viewed(self):
         self.views += 1
