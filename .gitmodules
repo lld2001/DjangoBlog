@@ -1,0 +1,3 @@
+[submodule "jazzmin"]
+	path = jazzmin
+	url = https://github.com/farridav/django-jazzmin.git
