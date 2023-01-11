@@ -42,7 +42,7 @@ CSRF_TRUSTED_ORIGINS = ['http://example.com']
 
 INSTALLED_APPS = [
     # 'django.contrib.admin',
-    # 'jazzmin',
+    'jazzmin.jazzmin',
     # 'adminlteui',
     'django.contrib.admin.apps.SimpleAdminConfig',
     'django.contrib.auth',
