@@ -325,3 +325,7 @@ if os.environ.get('DJANGO_ELASTICSEARCH_HOST'):
 
 
 PROJECT_ROOT = os.path.dirname(__file__)
+
+JAZZMIN_UI_TWEAKS = {
+    "body_small_text": True,
+}
