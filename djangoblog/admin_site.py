@@ -4,7 +4,6 @@ from django.contrib.sites.admin import SiteAdmin
 from django.contrib.sites.models import Site
 
 from accounts.admin import *
-from accounts.models import MyGroup
 from blog.admin import *
 from blog.models import *
 from comments.admin import *
@@ -65,5 +64,3 @@ admin_site.register(Site, SiteAdmin)
 admin_site.register(LogEntry, LogEntryAdmin)
 
 from django.contrib.auth.admin import GroupAdmin
-
-admin_site.register(MyGroup, GroupAdmin)

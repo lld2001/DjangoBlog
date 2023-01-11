@@ -14,7 +14,7 @@
                     {{ field }}
                     {{ field.errors }}
                 {% endfor %}
-
+{#{ form.as_p }#}
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">创建账户</button>
 
@@ -22,7 +22,7 @@
         </div>
 
         <p class="text-center">
-            <a href="{% url "account:login" %}">Sign In</a>
+          <a href="{% url "account:login" %}">登录</a>
         </p>
 
     </div> <!-- /container -->

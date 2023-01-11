@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 import os
 import sys
+from django.conf import settings
+from os.path import join
+
+sys.path.insert(0, join(settings.PROJECT_ROOT, "apps"))
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoblog.settings")

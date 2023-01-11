@@ -322,3 +322,6 @@ if os.environ.get('DJANGO_ELASTICSEARCH_HOST'):
             'ENGINE': 'djangoblog.elasticsearch_backend.ElasticSearchEngine',
         },
     }
+
+
+PROJECT_ROOT = os.path.dirname(__file__)
