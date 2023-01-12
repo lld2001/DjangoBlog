@@ -5,8 +5,8 @@ from django.conf import settings
 # from os.path import join
 
 # sys.path.insert(0, join(settings.PROJECT_ROOT, "apps"))
-from django.conf import settings
-sys.path.append(os.path.join(settings.BASE_DIR, "apps"))
+# from django.conf import settings
+# sys.path.append(os.path.join(settings.BASE_DIR, "apps"))
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoblog.settings")
