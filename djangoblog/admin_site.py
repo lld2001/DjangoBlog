@@ -15,7 +15,9 @@ from owntracks.admin import *
 from owntracks.models import *
 from servermanager.admin import *
 from servermanager.models import *
-
+from django.urls import path
+from . import views
+from django.http import request
 
 class DjangoBlogAdminSite(AdminSite):
     site_header = 'djangoblog 后台管理'
@@ -36,6 +38,37 @@ class DjangoBlogAdminSite(AdminSite):
     #         path('refresh/', self.admin_view(refresh_memcache), name="refresh"),
     #     ]
     #     return urls + my_urls
+
+    def get_urls(self):
+        self._registry = admin.site._registry
+        admin_urls = super().get_urls()
+        custom_urls = [
+            path('preferences/', views.Preferences.as_view(admin=self), name="preferences"),
+        ]
+        return custom_urls + admin_urls # custom urls must be at the beginning
+
+    # def get(self, request):
+    #     request.current_app == self.name
+    #     return super().get(request)
+
+    def get_app_list(self, request):
+        app_list = super().get_app_list(request)
+        app_list += [
+            {
+                "name": "单页应用",
+                "app_label": "Preferences",
+                # "app_url": "/admin/test_view",
+                "models": [
+                    {
+                        "name": "Preferences",
+                        "object_name": "preferences",
+                        "admin_url": "/admin/preferences",
+                        "view_only": True,
+                    }
+                ],
+            }
+        ]
+        return app_list
 
 
 admin_site = DjangoBlogAdminSite(name='admin')
