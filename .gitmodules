@@ -1,6 +1,3 @@
-[submodule "jazzmin"]
-	path = jazzmin
-	url = https://github.com/lld2001/django-jazzmin.git
 [submodule "simpleui"]
 	path = simpleui
 	url = https://github.com/lld2001/simpleui.git
