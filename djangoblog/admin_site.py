@@ -40,7 +40,7 @@ class DjangoBlogAdminSite(AdminSite):
     #     return urls + my_urls
 
     def get_urls(self):
-        self._registry = admin.site._registry
+        # self._registry = admin.site._registry
         admin_urls = super().get_urls()
         custom_urls = [
             path('preferences/', views.Preferences.as_view(admin=self), name="preferences"),
@@ -53,6 +53,27 @@ class DjangoBlogAdminSite(AdminSite):
 
     def get_app_list(self, request):
         app_list = super().get_app_list(request)
+        # app reorder
+        app_order = [
+            'accounts',
+            'oauth',
+            'blog',
+            'comments',
+        ]
+        last_index=999
+        app_order_dict = dict(zip(app_order, range(len(app_order))))
+        # app_list = list(self._build_app_dict(request).values())
+        app_list.sort(key=lambda x: app_order_dict.get(x['app_label'], last_index))
+        print(app_list)
+        for app in app_list:
+            if app['app_label'] == 'blog':
+                model_order = [
+                    '文章',
+                    '分类',
+                ]
+                model_order_dict = dict(zip(model_order, range(len(model_order))))
+                app['models'].sort(key=lambda x: model_order_dict.get(x['name'], last_index))
+        # 添加无模型页面
         app_list += [
             {
                 "name": "单页应用",
