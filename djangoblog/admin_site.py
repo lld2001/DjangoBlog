@@ -18,6 +18,8 @@ from servermanager.models import *
 from django.urls import path
 from . import views
 from django.http import request
+from django.contrib.auth.models import Group
+from django.contrib.auth.admin import GroupAdmin
 
 class DjangoBlogAdminSite(AdminSite):
     site_header = 'djangoblog 后台管理'
@@ -27,7 +29,7 @@ class DjangoBlogAdminSite(AdminSite):
         super().__init__(name)
 
     def has_permission(self, request):
-        return request.user.is_superuser
+        return request.user.is_staff
 
     # def get_urls(self):
     #     urls = super().get_urls()
@@ -56,6 +58,8 @@ class DjangoBlogAdminSite(AdminSite):
         # app reorder
         app_order = [
             'accounts',
+            'auth',
+            'group',
             'oauth',
             'blog',
             'comments',
@@ -64,7 +68,7 @@ class DjangoBlogAdminSite(AdminSite):
         app_order_dict = dict(zip(app_order, range(len(app_order))))
         # app_list = list(self._build_app_dict(request).values())
         app_list.sort(key=lambda x: app_order_dict.get(x['app_label'], last_index))
-        print(app_list)
+        # print(app_list)
         for app in app_list:
             if app['app_label'] == 'blog':
                 model_order = [
@@ -116,5 +120,6 @@ admin_site.register(OwnTrackLog, OwnTrackLogsAdmin)
 admin_site.register(Site, SiteAdmin)
 
 admin_site.register(LogEntry, LogEntryAdmin)
+admin_site.register(Group, GroupAdmin)
 
 from django.contrib.auth.admin import GroupAdmin
